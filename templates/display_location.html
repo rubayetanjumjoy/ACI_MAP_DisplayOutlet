@@ -269,12 +269,19 @@ rel="stylesheet"
     <div class="container mt-4 ms-2">
       <div class="row">
         <div class="col">
-          <button type="button" class="btn btn-success restaurant">Pharma</button>
+          <button type="button" class="btn btn-success restaurant" value="restaurant">Pharma</button>
           <button type="button" class="btn btn-success">Motor</button>
           <button type="button" class="btn btn-success">Foods</button>
           <button type="button" class="btn btn-success">Animal Health</button>
           <button type="button" class="btn btn-success">Fertilizer</button>
           <button type="button" class="btn btn-success">Premio Outlet</button>
+          <script>
+            $(document).on("click", '.restaurant', function(event) {
+              type = 'cafe';
+               
+              nearbybutton(type);
+            });
+          </script>
            
         </div>
       </div>

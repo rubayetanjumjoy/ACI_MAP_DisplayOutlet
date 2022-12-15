@@ -1,4 +1,4 @@
-console.log('j')
+ 
 let elementhtml = document.getElementById("amenities-search-bar");
 let oldmarker = [];
 let pointoldmarker=[];
@@ -364,22 +364,19 @@ function nearbybutton(type) {
 		lng,
 		lat
 	} = map.getCenter();
+	displayapi='http://127.0.0.1:8000/getaddress/'
 	nearbyapi = 'https://barikoi.xyz/v1/api/search/nearby/category/MTpPVkhCVEZaM09F/0.5/10?longitude=' + lng + '&latitude=' + lat + '&ptype=' + type + '';
-	fetch(nearbyapi)
+	fetch(displayapi)
 		.then(response => response.json())
 		.then(data => {
-		    console.log(data.status);
+		    console.log(data);
 
             for (i=0; i<oldmarker.length;i++)
             {
             oldmarker[i].remove();
             }
             if (data.status!=200){
-            const node = document.createElement("ul");
-		    node.setAttribute("id", "addresscontainer");
-		    node.setAttribute("class", "list-group");
-
-		    document.getElementById("search-results").appendChild(node);
+             
 			//adding markers into the map
 
 			for (i = 0; i < data['Place'].length; i++) {
@@ -398,73 +395,11 @@ function nearbybutton(type) {
 					.addTo(map);
 
 
-				const element = document.getElementById("amenities-search-bar");
-
-
-				if (element) {
-					element.remove();
-				}
-				oldmarker[i] = markers[i];
-				console.log(elementhtml)
-					const div = document.createElement("div");
-
-			div.setAttribute("class", "list-group-item list-group-item-action x ");
-
-
-			document.getElementById("addresscontainer").appendChild(div);
-			const icon = document.createElement("i");
-
-			icon.setAttribute("class", "  bi bi-geo-alt-fill");
-
-			document.getElementsByClassName("x")[i].appendChild(icon);
-
-			const node = document.createElement("a");
-
-
-
-			node.setAttribute("id", data['Place'][i]['id']);
-
-
-			const textnode = document.createTextNode(data['Place'][i]['Address']);
-			node.appendChild(textnode);
-			document.getElementsByClassName("x")[i].appendChild(node);
-
-
+				 
 
 			}
-		 }else
-		 {
-            const node = document.createElement("ul");
-		    node.setAttribute("id", "addresscontainer");
-		    node.setAttribute("class", "list-group");
-
-		    document.getElementById("search-results").appendChild(node);
-		    const div = document.createElement("div");
-
-			div.setAttribute("class", "list-group-item list-group-item-action x ");
-
-
-			document.getElementById("addresscontainer").appendChild(div);
-			const icon = document.createElement("i");
-
-			icon.setAttribute("class", "  bi bi-geo-alt-fill");
-
-			document.getElementsByClassName("x")[0].appendChild(icon);
-			const a = document.createElement("a");
-			const textnode = document.createTextNode('No '+type +' Found');
-			a.appendChild(textnode);
-			document.getElementsByClassName("x")[0].appendChild(a);
-			const element = document.getElementById("amenities-search-bar");
-
-
-				if (element) {
-					element.remove();
-				}
-
-
-		 }
-		document.getElementById("search_icon").className = "bi bi-house";
-
+		 } 
+		 
 
 
 
