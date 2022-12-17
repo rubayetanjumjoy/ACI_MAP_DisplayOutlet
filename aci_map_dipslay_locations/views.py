@@ -5,3 +5,5 @@ from django.http import request
 # Create your views here.
 def display_location(request):
     return render(request, 'display_location.html')
+def test(request):
+    return render(request, 'test.html')

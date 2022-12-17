@@ -3,6 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 class get_address(APIView):
     def get(self, request):
+        
+            
         payload={"Place":[{
             "id": 503396,
             "name": "Secondary Transfer Station (Sts)",
@@ -12,4 +14,5 @@ class get_address(APIView):
             "Address": "Mohammadpur Beribadh Road",
              
         }]}
+        
         return Response(payload)
